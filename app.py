@@ -51,10 +51,18 @@ def delete(id):
 
 @app.route('/update/<int:id>', methods['GET', 'POST'])
 def update(id):
+    taskToUpdate = Todo.query.get_or_404(id)  # seems like passed by reference
     if request.method == 'POST':
-        pass
+        taskToUpdate.content = request.form['content']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+
+        except:
+            return 'There was an issue when updating your task'
     else:
-        return redirect('/update')
+        return render_template('update.html', task=taskToUpdate)
 
 
 # __name__ has to be the last one to define
