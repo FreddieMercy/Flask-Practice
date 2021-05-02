@@ -37,10 +37,6 @@ def index():
         return render_template('index.html', tasks=tasks)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
 @app.route('/delete/<int:id>')
 def delete(id):
     task_to_delete = Todo.query.get_or_404(id)
@@ -51,3 +47,8 @@ def delete(id):
         return redirect('/')
     except:
         return 'There was a problem deleting that task'
+
+
+# __name__ has to be the last one to define
+if __name__ == "__main__":
+    app.run(debug=True)
