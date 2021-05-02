@@ -49,6 +49,14 @@ def delete(id):
         return 'There was a problem deleting that task'
 
 
+@app.route('/update/<int:id>', methods['GET', 'POST'])
+def update(id):
+    if request.method == 'POST':
+        pass
+    else:
+        return redirect('/update')
+
+
 # __name__ has to be the last one to define
 if __name__ == "__main__":
     app.run(debug=True)
