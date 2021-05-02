@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy  # database ops
 from datetime import datetime
 
@@ -21,7 +21,10 @@ class Todo(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        return 'Hello'
+    else:
+        return render_template('index.html')
 
 
 if __name__ == "__main__":
